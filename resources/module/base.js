@@ -19,6 +19,8 @@ class BaseModule {
         this.events();
 
         this.render();
+
+        this.subs();
     }
 
     // initialize lololo
@@ -29,6 +31,8 @@ class BaseModule {
     // events
     events() {}
 
+    subs() {}
+
     // set data
     setData(key, value) {
         this.data[key] = value;
@@ -38,6 +42,8 @@ class BaseModule {
     // render me
     render() {
         if(!this.template) return false;
+
+        console.log('module render', this.data);
 
         var markup = this.template(this.data);
         var domTemplateWrap = document.createElement('div');

@@ -1,17 +1,13 @@
-class App {
-    constructor() {
-        console.log('yey app');
-
-        this.selectors();
-        this.subs();
-    }
-
+class App extends BaseModule {
+    
     selectors() {
-        this.$itemDom = document.querySelector('.item');
+        //this.$itemDom = document.querySelector('.item');
+        this.dom.list = document.querySelector('.list');
     }
 
     subs() {
-        this.item = new ItemModule(this.$itemDom);
+        //this.item = new ItemModule(this.$itemDom);
+        this.list = new ListModule(this.dom.list);
     }
 
 }

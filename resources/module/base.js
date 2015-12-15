@@ -1,22 +1,39 @@
 class BaseModule {
 
-    constructor($el) {
+    constructor(el) {
         console.log('BaseModule constructor');
-        this.$el = $el;
-        this.init();
-
-        this.template = false;
+        this.template = null;
         this.data = {};
+        this.dom = {
+            el: el
+        };
+
+        this.init();
     }
 
     init() {
         console.log('BaseModule init');
         this.initData();
+
+        this.selectors();
+        this.events();
+
         this.render();
     }
 
     // initialize lololo
     initData() {}
+
+    selectors() {}
+
+    // events
+    events() {}
+
+    // set data
+    setData(key, value) {
+        this.data[key] = value;
+        this.render();
+    }
 
     // render me
     render() {
@@ -26,13 +43,16 @@ class BaseModule {
         var domTemplateWrap = document.createElement('div');
         domTemplateWrap.innerHTML = markup;
 
-        var oldNode = this.$el;
+        var oldNode = this.dom.el;
         var newNode = domTemplateWrap.firstChild;
 
         var parentNode = oldNode.parentNode;
         parentNode.insertBefore(newNode, oldNode);
         parentNode.removeChild(oldNode);
 
-        this.$el = newNode;
+        this.dom.el = newNode;
+
+        this.selectors();
+        this.events();
     }
 }

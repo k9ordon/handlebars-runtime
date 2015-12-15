@@ -20,9 +20,10 @@ module.exports = function(grunt) {
         handlebars: {
             compile: {
                 options: {
-                    namespace: 'JST', /*function(filename) {
-                        return filename;//.replace('resources/', '');
-                    }*/
+                    namespace: 'JST',
+                    /*function(filename) {
+                                           return filename;//.replace('resources/', '');
+                                       }*/
                 },
                 files: [{
                     expand: true, // Enable dynamic expansion.
@@ -33,9 +34,28 @@ module.exports = function(grunt) {
                     //extDot: 'first' // Extensions in filenames begin after the first dot
                 }, ]
             }
+        },
+        watch: {
+            scripts: {
+                files: ['**/*.js'],
+                tasks: ['default', 'notify:watch'],
+                options: {
+                    spawn: false,
+                },
+            },
+        },
+        notify: {
+            watch: {
+                options: {
+                    title: 'Watch done',
+                    message: 'default task done'
+                }
+            }
         }
     });
 
+    grunt.loadNpmTasks('grunt-notify');
+    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-handlebars');
     grunt.loadNpmTasks('grunt-babel');
 

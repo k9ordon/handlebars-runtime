@@ -1,0 +1,21 @@
+{
+  "name": "hbs",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "k9ordon <github@k94n.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "handlebars": "~4.0.5"
+  }
+}
